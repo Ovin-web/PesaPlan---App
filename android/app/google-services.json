@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "981096603142",
+    "project_id": "pesaplan-da74f",
+    "storage_bucket": "pesaplan-da74f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981096603142:android:05216d0c4ecf7cad926d87",
+        "android_client_info": {
+          "package_name": "KelvinKimani.com.pesaplan_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByw6rfqNmaDF0B0VMhjiMlZ_vsKfUSHo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

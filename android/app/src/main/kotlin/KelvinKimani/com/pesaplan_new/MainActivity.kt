@@ -1,0 +1,5 @@
+package KelvinKimani.com.pesaplan_new
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
