@@ -26,7 +26,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
 
     // Initial AI greeting
     _messages.add(
-      _ChatMessage(
+      const _ChatMessage(
         "Hi 👋 I’m your personal finance AI assistant.\n\nAsk me anything about money, saving, budgeting, or planning.",
         false,
       ),
@@ -35,6 +35,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
 
   @override
   void dispose() {
+    // ✅ Properly dispose controllers to prevent memory leaks
     _controller.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -55,6 +56,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
     try {
       final reply = await widget.assistantService.respond(text);
 
+      // ✅ Check if widget is still mounted before calling setState after an async gap
       if (!mounted) return;
 
       setState(() {
@@ -66,7 +68,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
 
       setState(() {
         _messages.add(
-          _ChatMessage(
+          const _ChatMessage(
             "⚠️ Sorry, something went wrong. Please try again.",
             false,
           ),
@@ -176,7 +178,7 @@ class _ChatMessage {
   final String text;
   final bool isUser;
 
-  _ChatMessage(this.text, this.isUser);
+  const _ChatMessage(this.text, this.isUser);
 }
 
 // --------------------------------------------------
