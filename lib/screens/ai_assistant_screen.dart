@@ -33,6 +33,13 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
     );
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   Future<void> _sendMessage() async {
     final text = _controller.text.trim();
     if (text.isEmpty || _isTyping) return;
@@ -48,11 +55,15 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
     try {
       final reply = await widget.assistantService.respond(text);
 
+      if (!mounted) return;
+
       setState(() {
         _messages.add(_ChatMessage(reply, false));
         _isTyping = false;
       });
     } catch (e) {
+      if (!mounted) return;
+
       setState(() {
         _messages.add(
           _ChatMessage(
@@ -96,7 +107,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
               itemCount: _messages.length + (_isTyping ? 1 : 0),
               itemBuilder: (context, index) {
                 if (_isTyping && index == _messages.length) {
-                  return _TypingIndicator();
+                  return const _TypingIndicator();
                 }
 
                 final msg = _messages[index];
@@ -172,6 +183,8 @@ class _ChatMessage {
 // TYPING INDICATOR
 // --------------------------------------------------
 class _TypingIndicator extends StatelessWidget {
+  const _TypingIndicator({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Align(
